@@ -27,7 +27,6 @@ class gui:
            
     def start(self):
         gui.stop = False
-        self.timer = sw.stopWatch(startTime=time.time())
         self.countup()
     
         
