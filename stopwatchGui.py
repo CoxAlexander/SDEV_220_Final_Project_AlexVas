@@ -1,11 +1,11 @@
-import stopwatch 
+import stopwatch as sw
 import tkinter as tk
 import time
 
 class gui:
     stop = True
     def __init__(self):
-        self.timer = stopwatch.stopWatch(startTime=time.time())
+        self.timer = sw.stopWatch(startTime=time.time())
         self.root = tk.Tk()
         self.root.geometry('500x250')
         self.root.title('Timer')
@@ -27,14 +27,14 @@ class gui:
            
     def start(self):
         gui.stop = False
-        self.timer = stopwatch.stopWatch(startTime=time.time())
+        self.timer = sw.stopWatch(startTime=time.time())
         self.countup()
     
         
     def stop(self):
         gui.stop = True
         self.time_label.config(text="00:00:00")
-        self.timer = stopwatch.stopWatch(startTime=time.time())
+        self.timer = sw.stopWatch(startTime=time.time())
         self.countup()
     
         
