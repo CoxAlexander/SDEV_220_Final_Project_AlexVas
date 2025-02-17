@@ -27,12 +27,14 @@ class gui:
            
     def start(self):
         gui.stop = False
+        self.timer = stopwatch.stopWatch(startTime=time.time())
         self.countup()
     
         
     def stop(self):
         gui.stop = True
         self.time_label.config(text="00:00:00")
+        self.timer = stopwatch.stopWatch(startTime=time.time())
         self.countup()
     
         
