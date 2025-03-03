@@ -35,9 +35,10 @@ class gui:
     
            
     def lap(self):
+        self.lapTime = sw.lap(startTime=time.time())
         self.lapNum +=1
-        self.lap_label = tk.Label(self.root, font=('Helvetica' ,30), text=self.timer.lapTime[self.lap])
-        self.lap_label.grid(row=self.lap,column = 0, padx = 10, pady = 5)
+        self.lap_label = tk.Label(self.root, font=('Helvetica' ,30), text=self.lapTime.lap())
+        self.lap_label.grid(row=(self.lap),column = 0, padx = 10, pady = 5)
         self.root.update()
     
                

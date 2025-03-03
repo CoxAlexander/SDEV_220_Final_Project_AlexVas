@@ -1,9 +1,6 @@
 import time 
 class stopWatch:
     def __init__(self, startTime):
-        self.lapNum: int = 1
-        self.lapTime: int = 0
-        self.lap: dict = {self.lapNum : self.lapTime}
         self.elaspedTime: float = 0
         self.startTime: float = startTime
         self.passedTime: float = 0
@@ -13,11 +10,6 @@ class stopWatch:
         self.elaspedTime =  ((currentTime - self.startTime) - self.passedTime)
         self.elaspedTimeFormat: tuple = time.strftime("%H:%M:%S",time.gmtime(self.elaspedTime))
         return (self.elaspedTimeFormat)
-    
-    def lap(self):
-        self.lapNum += 1
-        self.lapTime = self.currentTime()
-        self.lap[self.lapNum] = self.lapTime
         
         
     def pauseTime(self, pausedTime:float):
@@ -31,7 +23,18 @@ class stopWatch:
         
 
 
+class lap(stopWatch):
+    def __init__(self, startTime):
+        super().__init__(startTime)
+        self.lapNum: int = 0
+        self.lapTime: int = 0
+        self.lapList: list = []
         
+    def lap(self):
+        self.lapNum += 1
+        self.lapTime = self.currentTime(time.time())
+        self.lapList.append(self.lapTime)
+        return self.lapList[self.lapNum]   
         
 if __name__ == "__main__":
     timer = stopWatch(startTime=time.time())
