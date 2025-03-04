@@ -14,7 +14,7 @@ class gui:
         self.root = tk.Tk()
         self.root.geometry(f'{length}x{height}')
         self.root.title('StopWatch')
-        self.time_label = tk.Label(self.root, font = ('Helvetica', 30), text =  "00:00:00") #self.timer.currentTime(time.time()))
+        self.time_label = tk.Label(self.root, font = ('Helvetica', 30), text =  "00:00:00") 
         self.time_label.grid(row = 0, column = 0, columnspan = 5, padx = 5, pady = 5)        
         self.start_button = tk.Button(self.root, font = ('Helvetica', 30), text = 'Begin', command = self.start)
         self.start_button.grid(row = (self.lapNum+1), column = 0, padx = 10, pady = 5)
@@ -35,10 +35,17 @@ class gui:
     
            
     def lap(self):
+        height: int = 300 + (50*self.lapNum)
+        length: int = 600 
         self.lapTime = sw.lap(startTime=time.time())
         self.lapNum +=1
-        self.lap_label = tk.Label(self.root, font=('Helvetica' ,30), text=self.lapTime.lap())
-        self.lap_label.grid(row=(self.lap),column = 0, padx = 10, pady = 5)
+        self.lap_label = tk.Label(self.root, font=('Helvetica' ,20), text=f'lap {self.lapNum}: {self.lapTime.lapFunc(self.timer.currentTime(time.time()))}')
+        self.lap_label.grid(row=(self.lapNum),column = 0, columnspan = 5, padx = 10, pady = 5)
+        self.start_button.grid(row = (self.lapNum+1), column = 0, padx = 10, pady = 5)
+        self.stop_button.grid(row = (self.lapNum+1), column = 1,  padx = 10, pady = 5)
+        self.pause_button.grid(row = (self.lapNum+1), column = 2,  padx = 0, pady = 5)
+        self.lap_button.grid(row = (self.lapNum+1), column = 3,  padx = 10, pady = 5)
+        self.root.geometry(f'{length}x{height}')
         self.root.update()
     
                

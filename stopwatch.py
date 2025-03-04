@@ -30,11 +30,12 @@ class lap(stopWatch):
         self.lapTime: int = 0
         self.lapList: list = []
         
-    def lap(self):
+    def lapFunc(self,lapTime):
         self.lapNum += 1
-        self.lapTime = self.currentTime(time.time())
+        self.lapTime = lapTime
         self.lapList.append(self.lapTime)
-        return self.lapList[self.lapNum]   
+        print(self.lapList[self.lapNum-1])
+        return self.lapList[self.lapNum-1]   
         
 if __name__ == "__main__":
     timer = stopWatch(startTime=time.time())
