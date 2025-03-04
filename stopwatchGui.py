@@ -7,16 +7,17 @@ class gui:
     paused: bool = False
     def __init__(self):
         self.lapNum:int = 0
-        height: int = 300 + (50*self.lapNum)
-        length: int = 600 
+        self.height: int = 200 + (50*self.lapNum)
+        self.length: int = 600
+        self.lapList = [] 
         self.timer = sw.stopWatch(startTime = time.time())
         self.pausedTimer = sw.stopWatch(startTime=time.time())
         self.root = tk.Tk()
         self.screenWidth = self.root.winfo_screenwidth()
         self.screenHeight = self.root.winfo_screenheight()
-        x = (self.screenWidth/2) - (length/2)
-        y = (self.screenHeight/2) - (length/2)
-        self.root.geometry('%dx%d+%d+%d' % (length,height,x,y))
+        x = (self.screenWidth/2) - (self.length/2)
+        y = (self.screenHeight/2) - (self.length/2)
+        self.root.geometry('%dx%d+%d+%d' % (self.length,self.height,x,y))
         self.root.title('StopWatch')
         self.time_label = tk.Label(self.root, font = ('Helvetica', 30), text =  "00:00:00") 
         self.time_label.grid(row = 0, column = 0, columnspan = 5, padx = 5, pady = 5)        
@@ -39,17 +40,17 @@ class gui:
     
            
     def lap(self):
-        height: int = 300 + (50*self.lapNum)
-        length: int = 600 
+        self.height: int = 300 + (50*self.lapNum)
+        self.length: int = 600 
         self.lapTime = sw.lap(startTime=time.time())
         self.lapNum +=1
-        self.lap_label = tk.Label(self.root, font=('Helvetica' ,20), text=f'lap {self.lapNum}: {self.lapTime.lapFunc(self.timer.currentTime(time.time()))}')
-        self.lap_label.grid(row=(self.lapNum),column = 0, columnspan = 5, padx = 10, pady = 5)
+        self.lapList.append(tk.Label(self.root, font=('Helvetica' ,20), text=f'lap {self.lapNum}: {self.lapTime.lapFunc(self.timer.currentTime(time.time()))}'))
+        self.lapList[self.lapNum-1].grid(row=(self.lapNum),column = 0, columnspan = 5, padx = 10, pady = 5)
         self.start_button.grid(row = (self.lapNum+1), column = 0, padx = 10, pady = 5)
         self.stop_button.grid(row = (self.lapNum+1), column = 1,  padx = 10, pady = 5)
         self.pause_button.grid(row = (self.lapNum+1), column = 2,  padx = 0, pady = 5)
         self.lap_button.grid(row = (self.lapNum+1), column = 3,  padx = 10, pady = 5)
-        self.root.geometry(f'{length}x{height}')
+        self.root.geometry(f'{self.length}x{self.height}')
         self.root.update()
     
                
@@ -81,7 +82,15 @@ class gui:
         gui.pause = True
         self.pause_button.config(text = "Pause")
         self.time_label.config(text = "00:00:00")
+        for x in range(0,len(self.lapList)):
+            self.lapList[x].destroy()
+        self.lapNum = 0
+        self.lapList = [] 
         self.timer = sw.stopWatch(startTime=time.time())
+        self.height: int = 200 + (50*self.lapNum)
+        self.length: int = 600
+        self.root.geometry(f'{self.length}x{self.height}')
+        self.root.update()
         
         
         
