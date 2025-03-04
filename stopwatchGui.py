@@ -16,7 +16,7 @@ class gui:
         self.screenWidth = self.root.winfo_screenwidth()
         self.screenHeight = self.root.winfo_screenheight()
         x = (self.screenWidth/2) - (self.length/2)
-        y = (self.screenHeight/2) - (self.length/2)
+        y = (self.screenHeight/2) - (self.height/2)
         self.root.geometry('%dx%d+%d+%d' % (self.length,self.height,x,y))
         self.root.title('StopWatch')
         self.time_label = tk.Label(self.root, font = ('Helvetica', 30), text =  "00:00:00") 

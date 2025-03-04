@@ -46,7 +46,7 @@ button_frame.pack(pady = 200)
 button1 = Button(button_frame, text = 'Countdown', command = lambda: run_script('COUNTDOWN_TIMER.py'), width = 20, height = 6,)
 button1.pack(side = LEFT, padx = 50)
 
-button2 = Button(button_frame, text = 'Stopwatch', command = lambda: run_script('Insert file here, nerd!'), width = 20, height = 6)
+button2 = Button(button_frame, text = 'Stopwatch', command = lambda: run_script('stopwatchGui.py'), width = 20, height = 6)
 button2.pack(side = LEFT, padx = 50)
 
 # Adds a clock label
