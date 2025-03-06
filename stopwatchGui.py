@@ -37,6 +37,7 @@ class gui:
            self.timer.currentTime(time.time())
            self.time_label.config(text = self.timer.currentTime(time.time()))
            self.root.update()
+           self.timer.storeData(pT=self.timer.getPassedTime(), sT=self.timer.getStartTime)
     
            
     def lap(self):
@@ -61,7 +62,6 @@ class gui:
             self.pausedTimer.pausedTime(currentTime=time.time())
             self.timer.pauseTime(pausedTime=self.pausedTimer.pausedTime(currentTime=time.time()))
             self.pause_button.config(text="Pause")
-            
             
         else:
             self.pausedTimer = sw.stopWatch(startTime=time.time())
