@@ -3,7 +3,7 @@ import time
 import tkinter as tk
 import os
 import sys
-
+import subprocess
 class Timer:
     def __init__(self):
         self.root = tk.Tk()
@@ -104,8 +104,9 @@ class Timer:
         self.pause_button.config(text = 'Pause')
 
     def menu(self):
+        subprocess.Popen(['python', "Menu.py"])
         self.root.destroy()
-        os.system('python Menu.py')
+        
         
 
 if __name__ == '__main__':
