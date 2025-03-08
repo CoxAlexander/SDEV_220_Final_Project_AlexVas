@@ -95,8 +95,6 @@ class lap(stopWatch):
     
 
     def getLapTime(self,lapNum):
-        print(self.lapList[lapNum-1])
-        print(self.lapList)
         return self.lapList[lapNum-1]
         
 
@@ -111,7 +109,6 @@ class lap(stopWatch):
         sql = sa.text('SELECT * FROM lap ORDER BY lapNum')
         resultSet = self.conn.execute(sql)
         resultsDict = resultSet.mappings().all()
-        print(resultsDict)
         pattern = (r"{'lapNum': (\d), 'lapTime': '(\d{2}:\d{2}:\d{2})'}")
         for row in resultsDict:
             re_match = re.match(pattern=pattern,string=str(row))

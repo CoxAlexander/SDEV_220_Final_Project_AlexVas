@@ -6,7 +6,7 @@ root = Tk()
 root.title('Timer Menu')
 root.geometry('500x600')
 
-width = 500
+width = 800
 height = 600
 
 screen_width = root.winfo_screenwidth()
@@ -53,6 +53,8 @@ button2.pack(side = LEFT, padx = 50)
 clock_label = Label(root, font=('Helvetica', 30))
 clock_label.pack(pady = 0)
 
+exit_button = Button(button_frame, text = 'Exit', command = lambda: root.destroy(), width = 20, height = 6)
+exit_button.pack(side = BOTTOM, padx = 50)
 
 update_clock()
 
